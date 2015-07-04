@@ -1,5 +1,2 @@
 require "omakase/version"
-
-module Omakase
-  # Your code goes here...
-end
+require "omakase/enumerable"
