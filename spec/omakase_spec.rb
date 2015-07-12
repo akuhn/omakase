@@ -32,4 +32,27 @@ describe Omakase do
     end
 
   end
+
+  describe 'Hash#missing_method' do
+
+    let(:hash) do
+      { name: 'Peter', 'profession' => 'lion tamer', 'great love' => 'flannel' }
+    end
+
+    it "falls through if key is not found" do
+      expect { hash.unknown_key }.to raise_error(NoMethodError)
+    end
+
+    it 'should provide method access for symbol keys' do
+      expect { hash.name }.to_not raise_error
+      expect(hash.name).to eq hash[:name]
+    end
+
+    it 'should provide method access for string keys' do
+      expect { hash.profession }.to_not raise_error
+      expect(hash.profession).to eq hash['profession']
+    end
+
+  end
+
 end
