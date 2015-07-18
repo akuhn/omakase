@@ -6,6 +6,25 @@ describe Omakase do
     expect(Omakase::VERSION).not_to be nil
   end
 
+  describe 'Array#without' do
+
+    it 'should remove element' do
+      array = %w(a bunny_lake b c)
+      expect(array.without('bunny_lake')).to eq %w(a b c)
+    end
+
+    it 'should remove all occurences' do
+      array = %w(a bunny_lake bunny_lake bunny_lake b c)
+      expect(array.without('bunny_lake')).to eq %w(a b c)
+    end
+
+    it 'should use case equality' do
+      array = %w(the quick brown fox jumps over the lazy dog)
+      expect(array.without(/..../)).to eq %w(the fox the dog)
+    end
+
+  end
+
   describe 'Enumerable#freq' do
 
     it 'should count element frequency' do
