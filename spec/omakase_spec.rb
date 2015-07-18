@@ -28,26 +28,40 @@ describe Omakase do
   describe 'Enumerable#freq' do
 
     it 'should count element frequency' do
-      array = %w{c b a c b a c c c d}
-      freq = array.freq
-
-      expect(freq['a']).to eq 2
-      expect(freq['b']).to eq 2
-      expect(freq['c']).to eq 5
-      expect(freq['d']).to eq 1
+      freq = 'bananas'.chars.freq
+      expect(freq['a']).to eq 3
+      expect(freq['b']).to eq 1
+      expect(freq['n']).to eq 2
+      expect(freq['s']).to eq 1
     end
 
     it 'should handle nil elements' do
-      array = [nil, nil, nil]
-      freq = array.freq
-
+      freq = [nil, nil, nil].freq
       expect(freq[nil]).to be 3
     end
 
     it 'should be sorted by frequency' do
-      array = %w{c b a c b a c c c d}
+      freq = 'bananas'.chars.freq
+      expect(freq.keys).to eq %w(a n b s)
+    end
 
-      expect(array.freq.keys).to eq %w{c b a d}
+  end
+
+  describe 'Enumerable#index_by' do
+
+    let(:names) do
+      %w(coat mittens snowboard)
+    end
+
+    let(:objects) do
+      struct = Struct.new(:name)
+      names.map { |name| struct.new(name) }
+    end
+
+    it "should create a hash with keys" do
+      index = objects.index_by(&:name)
+      expect(index.keys).to match_array names
+      expect(index.values).to match_array objects
     end
 
   end
