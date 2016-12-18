@@ -7,6 +7,7 @@ My choice of missing Ruby methods
     Enumerable#index_by
     Enumerable#where
     Hash#:key (ie javascript-style accessors)
+    Object#itself
 
 ## Installation
 

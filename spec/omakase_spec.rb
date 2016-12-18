@@ -102,4 +102,11 @@ describe Omakase do
 
   end
 
+  describe 'Object#itself' do
+    it 'should return same object' do
+      example = 'example'
+      expect(example.itself).to be example
+    end
+  end
+
 end
