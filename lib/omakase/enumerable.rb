@@ -12,4 +12,9 @@ module Enumerable
     Hash[map { |value| [yield(value), value] }]
   end
 
+  def where(options)
+    raise ArgumentError unless Hash === options
+    select { |each| options.all? { |key, pattern| pattern === each.send(key) }}
+  end
+
 end

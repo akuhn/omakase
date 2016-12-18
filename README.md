@@ -5,6 +5,7 @@ My choice of missing Ruby methods
     Array#without
     Enumerable#freq
     Enumerable#index_by
+    Enumerable#where
     Hash#:key (ie javascript-style accessors)
 
 ## Installation

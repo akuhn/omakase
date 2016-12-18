@@ -20,7 +20,7 @@ describe Omakase do
 
     it 'should use case equality' do
       array = %w(the quick brown fox jumps over the lazy dog)
-      expect(array.without(/..../)).to eq %w(the fox the dog)
+      expect(array.without(/....+/)).to eq %w(the fox the dog)
     end
 
   end
@@ -84,6 +84,20 @@ describe Omakase do
     it 'should provide method access for string keys' do
       expect { hash.profession }.to_not raise_error
       expect(hash.profession).to eq hash['profession']
+    end
+
+  end
+
+  describe 'Enumerable#where' do
+
+    it 'should select elements' do
+      example = %w{the quick brown fox jumps over the lazy dog}
+      expect(example.where(size: 3)).to eq %w{the fox the dog}
+    end
+
+    it 'should apply all patterns' do
+      example = %w{the quick brown fox jumps over the lazy dog}
+      expect(example.where(size: 3, downcase: /o/)).to eq %w{fox dog}
     end
 
   end
