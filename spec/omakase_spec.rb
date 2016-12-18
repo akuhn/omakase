@@ -102,6 +102,31 @@ describe Omakase do
 
   end
 
+  describe 'Object#in?' do
+
+    it 'should check array membership' do
+      example = %w{the quick brown fox jumps over the lazy dog}
+      expect('dog'.in?(example)).to eq true
+      expect('fox'.in?(example)).to eq true
+      expect('cat'.in?(example)).to eq false
+    end
+
+    it 'should check substrings' do
+      example = 'abundance'
+      expect('dance'.in?(example)).to eq true
+      expect('hello'.in?(example)).to eq false
+    end
+
+    it 'should check range coverage' do
+      example = 1..6
+      expect(0.in?(example)).to eq false
+      expect(1.in?(example)).to eq true
+      expect(3.5.in?(example)).to eq true
+      expect(6.in?(example)).to eq true
+    end
+
+  end
+
   describe 'Object#itself' do
     it 'should return same object' do
       example = 'example'
