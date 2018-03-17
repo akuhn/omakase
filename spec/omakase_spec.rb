@@ -45,6 +45,12 @@ describe Omakase do
       expect(freq.keys).to eq %w(a n b s)
     end
 
+    it 'should accept a block' do
+      freq = %w{the quick brown fox jumps over the lazy dog}.freq(&:size)
+      expect(freq[5]).to eq 3
+      expect(freq[4]).to eq 2
+      expect(freq[3]).to eq 4
+    end
   end
 
   describe 'Enumerable#index_by' do

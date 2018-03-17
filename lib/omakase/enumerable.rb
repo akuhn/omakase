@@ -3,8 +3,12 @@
 module Enumerable
 
   def freq
-    freq = Hash.new { |itself, key| itself[key] = 0 }
-    each { |value| freq[value] += 1 }
+    freq = Hash.new { |h, key| h[key] = 0 }
+    if block_given?
+      self.each { |value| freq[yield(value)] += 1 }
+    else
+      self.each { |value| freq[value] += 1 }
+    end
     Hash[freq.sort_by { |key, count| -count }]
   end
 
